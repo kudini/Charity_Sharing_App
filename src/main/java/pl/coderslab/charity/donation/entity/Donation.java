@@ -1,7 +1,9 @@
-package pl.coderslab.charity.entitiy;
+package pl.coderslab.charity.donation.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.coderslab.charity.category.entity.Category;
+import pl.coderslab.charity.institution.entity.Institution;
 
 import javax.persistence.*;
 import java.time.LocalDate;
