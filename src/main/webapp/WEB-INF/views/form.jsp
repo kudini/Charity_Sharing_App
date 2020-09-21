@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="form_header.jsp"/>
 
 <section class="form--steps">
     <div class="form--steps-instructions">
