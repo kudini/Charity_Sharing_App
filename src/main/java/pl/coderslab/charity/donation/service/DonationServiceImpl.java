@@ -35,4 +35,14 @@ public class DonationServiceImpl implements DonationService{
         }
         return result;
     }
+
+    @Override
+    public void saveDonation(Donation donation) {
+        donationRepository.save(donation);
+    }
+
+    @Override
+    public void modifyDonation(Donation donation) {
+        donationRepository.save(donation);
+    }
 }

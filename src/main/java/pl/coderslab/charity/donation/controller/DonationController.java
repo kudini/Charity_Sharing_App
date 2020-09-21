@@ -30,7 +30,8 @@ public class DonationController {
         return "form";
     }
     @PostMapping("/donate")
-    public String donationForm(@ModelAttribute Donation model){
+    public String donationForm(@ModelAttribute Donation donation){
+        donationService.saveDonation(donation);
         return "redirect:/donate-confirm";
     }
     @GetMapping("/donate-confirm")
