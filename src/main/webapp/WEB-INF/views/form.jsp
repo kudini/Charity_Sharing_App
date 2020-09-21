@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -43,14 +44,14 @@
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
-                <c:forEach var="category" items="${donation.getCategoryList()}">
+                <c:forEach var="category" items="${donationmodel.getCategoryList()}">
 
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <form:radiobutton
+                            <form:checkbox
 
-                                    name="categories"
-                                    path="categoryList"
+                                    name="category"
+                                    path="categories"
                                     value="${category.getId()}"
                             />
                             <span class="checkbox"></span>
@@ -88,7 +89,7 @@
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                <c:forEach var="institution" items="${donation.getInstitutions()}">
+                <c:forEach var="institution" items="${donationmodel.getInstitutions()}">
 
                     <div class="form-group form-group--checkbox">
                         <label>
@@ -133,12 +134,12 @@
                             </label>
                         </div>
 
-                        <div class="form-group form-group--inline">
-                            <label>
-                                Numer telefonu <form:input type="phone" name="phone" path="phoneNumber"/>
-                            </label>
-                        </div>
-                    </div>
+<%--                        <div class="form-group form-group--inline">--%>
+<%--                            <label>--%>
+<%--                                Numer telefonu <form:input type="phone" name="phone" path="phoneNumber"/>--%>
+<%--                            </label>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>

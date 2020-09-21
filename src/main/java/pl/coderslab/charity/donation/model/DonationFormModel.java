@@ -11,12 +11,10 @@ import java.util.List;
 @Getter
 @Setter
 public class DonationFormModel {
-    private Donation donation;
     private List<Institution> institutions;
     private List<Category> categoryList;
 
-    public DonationFormModel(Donation donation, List<Institution> institutions, List<Category> categoryList) {
-        this.donation = donation;
+    public DonationFormModel( List<Institution> institutions, List<Category> categoryList) {
         this.institutions = institutions;
         this.categoryList = categoryList;
     }
