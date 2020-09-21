@@ -11,6 +11,8 @@ import pl.coderslab.charity.home.model.HomePageInfoModel;
 import pl.coderslab.charity.institution.entity.Institution;
 import pl.coderslab.charity.institution.service.InstitutionService;
 
+import java.util.List;
+
 
 @Controller
 public class HomeController {
@@ -23,24 +25,20 @@ public class HomeController {
         this.institutionService = institutionService;
     }
 
-    private int sumAllGifts(){
-
-        return donationService.findAllDonations().size();
+    private long sumAllGifts(){
+        return donationService.countDonations();
     }
-    private Institution[] institutionsInDatabase(){
+    private List<Institution> institutionsInDatabase(){
 
-        return institutionService.findAllInstitution().toArray(new Institution[0]);
+        return institutionService.findAllInstitution();
     }
-    private int sumAllBags(){
-        return donationService.findAllDonations().stream()
-                .mapToInt(Donation::getQuantity)
-                .sum();
+    private Long sumAllBags(){
+        return donationService.countQuantity();
     }
 
 
     @RequestMapping("/")
     public String homeAction(Model model){
-
         model.addAttribute("info",new HomePageInfoModel(sumAllBags(),sumAllGifts(),institutionsInDatabase()));
         return "index";
     }

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
+<a name="#start"></a>
 
 <jsp:include page="header.jsp"/>
 
@@ -36,7 +37,8 @@
     </div>
 </section>
 
-<section class="steps">
+<a name="steps"></a>
+<section name="steps" class="steps">
     <h2>Wystarczą 4 proste kroki</h2>
 
     <div class="steps--container">
@@ -65,6 +67,8 @@
     <a href="#" class="btn btn--large">Załóż konto</a>
 </section>
 
+<a name="about_us"></a>
+
 <section class="about-us">
     <div class="about-us--text">
         <h2>O nas</h2>
@@ -77,6 +81,7 @@
 </section>
 
 <section class="help">
+    <a name="help"></a>
     <h2>Komu pomagamy?</h2>
 
     <!-- SLIDE 1 -->
@@ -94,11 +99,9 @@
                     <div class="title">Fundacja: "${institution.getName()}"</div>
                     <div class="subtitle">Cel i misja: ${institution.getDescription()}</div>
                 </div>
-                <c:if test="${status.last==true}">
+                <c:if test="${status.last}">
                     <c:if test="${status.index %2 == 0}">
-                        <div class="col">
-                            <div class="title"></div>
-                            <div class="subtitle"></div>
+                        <div class="col last-hide">
                         </div>
                     </c:if>
                 </c:if>

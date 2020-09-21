@@ -165,6 +165,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // TODO: get data from inputs and show them in summary
     }
+    navigationScript(){
+      $("#nav a").click(function(e){
+        e.preventDefault();
+        $('html,body').scrollTo(this.hash,this.hash);
+      });
+    };
 
   }
   const form = document.querySelector(".form--steps");

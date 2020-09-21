@@ -5,6 +5,7 @@ import pl.coderslab.charity.donation.entity.Donation;
 import pl.coderslab.charity.donation.repository.DonationRepository;
 
 import java.util.List;
+import java.util.function.LongFunction;
 
 @Service
 public class DonationServiceImpl implements DonationService{
@@ -19,5 +20,19 @@ public class DonationServiceImpl implements DonationService{
         List<Donation> donationList=donationRepository.findAll();
 
         return donationList;
+    }
+
+    @Override
+    public Long countDonations() {
+        return donationRepository.count();
+    }
+
+    @Override
+    public Long countQuantity() {
+        Long result =donationRepository.countQuantity();
+        if(result==null){
+            return 0l;
+        }
+        return result;
     }
 }
