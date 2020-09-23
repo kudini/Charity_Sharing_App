@@ -1,5 +1,6 @@
 package pl.coderslab.charity.donation.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,17 +27,18 @@ public class DonationController {
 
     @GetMapping("/donate")
     public String donationForm(Model model){
-        model.addAttribute("donationmodel",new DonationFormModel(institutionService.findAllInstitution(),categoryService.findAllCategories()));
+        DonationFormModel donationFormModel = new DonationFormModel(institutionService.findAllInstitution(),categoryService.findAllCategories());
+        model.addAttribute("donationmodel",donationFormModel);
         model.addAttribute("donation",new Donation());
+        JSONPObject jsonpObject = new JSONPObject("institution",donationFormModel.getInstitutions());
+
+
         return "form";
     }
     @PostMapping("/donate")
     public String donationForm(@ModelAttribute Donation donation){
         donationService.saveDonation(donation);
-        return "redirect:/donate-confirm";
-    }
-    @GetMapping("/donate-confirm")
-    public String giveThingsFormConfirmation(Model model){
         return "form-confirmation";
+
     }
 }

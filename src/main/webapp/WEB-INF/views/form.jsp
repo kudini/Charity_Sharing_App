@@ -41,105 +41,105 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
         <form:form method="post" modelAttribute="donation">
-            <!-- STEP 1: class .active is switching steps -->
-            <div data-step="1" class="active">
-                <h3>Zaznacz co chcesz oddać:</h3>
-                <c:forEach var="category" items="${donationmodel.getCategoryList()}">
+        <!-- STEP 1: class .active is switching steps -->
+        <div data-step="1" class="active">
+            <h3>Zaznacz co chcesz oddać:</h3>
+            <c:forEach var="category" items="${donationmodel.getCategoryList()}">
 
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <form:checkbox
-
-                                    name="category"
-                                    path="categories"
-                                    value="${category.getId()}"
-                            />
-                            <span class="checkbox"></span>
-                            <span class="description"
-                            >${category.getName()}</span
-                            >
-                        </label>
-                    </div>
-
-                </c:forEach>
-                <div class="form-group form-group--buttons">
-                    <button type="button" class="btn next-step">Dalej</button>
-                </div>
-            </div>
-
-            <!-- STEP 2 -->
-            <div data-step="2">
-                <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
-
-                <div class="form-group form-group--inline">
+                <div class="form-group form-group--checkbox">
                     <label>
-                        Liczba 60l worków:
-                        <form:input type="number" path="quantity" step="1" min="1"/>
+                        <form:checkbox
+
+                                name="category"
+                                path="categories"
+                                value="${category.getId()}"
+                        />
+                        <span class="checkbox"></span>
+                        <span class="description"
+                        >${category.getName()}</span
+                        >
                     </label>
                 </div>
 
-                <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
-                </div>
+            </c:forEach>
+            <div class="form-group form-group--buttons">
+                <button type="button" class="btn next-step">Dalej</button>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div data-step="2">
+            <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
+
+            <div class="form-group form-group--inline">
+                <label>
+                    Liczba 60l worków:
+                    <form:input id="quantity" type="number" path="quantity" step="1" min="1"/>
+                </label>
             </div>
 
+            <div class="form-group form-group--buttons">
+                <button type="button" class="btn prev-step">Wstecz</button>
+                <button type="button" class="btn next-step">Dalej</button>
+            </div>
+        </div>
 
-            <!-- STEP 4 -->
-            <div data-step="3">
-                <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                <c:forEach var="institution" items="${donationmodel.getInstitutions()}">
+        <!-- STEP 4 -->
+        <div data-step="3">
+            <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
-                    <div class="form-group form-group--checkbox">
-                        <label>
-                            <form:radiobutton path="institution" value="${institution.getId()}"/>
-                            <span class="checkbox radio"></span>
-                            <span class="description">
-                  <div class="title">Fundacja: ${institution.getName()}</div>
+            <c:forEach var="institution" items="${donationmodel.getInstitutions()}">
+
+                <div class="form-group form-group--checkbox" id="institutions">
+                    <label>
+                        <form:radiobutton path="institution" value="${institution.getId()}"/>
+                        <span class="checkbox radio"></span>
+                        <span class="description">
+                            <div class="title">Fundacja: <span id="institution-name">${institution.getName()}</span></div>
                   <div class="subtitle">
                     Cel i misja:  ${institution.getDescription()}
                   </div>
                 </span>
+                    </label>
+                </div>
+
+            </c:forEach>
+
+
+            <div class="form-group form-group--buttons">
+                <button type="button" class="btn prev-step">Wstecz</button>
+                <button type="button" class="btn next-step">Dalej</button>
+            </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div data-step="4">
+            <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+
+            <div class="form-section form-section--columns">
+                <div class="form-section--column">
+                    <h4>Adres odbioru</h4>
+                    <div class="form-group form-group--inline">
+                        <label> Ulica <form:input type="text" name="address" path="street"/> </label>
+                    </div>
+
+                    <div class="form-group form-group--inline">
+                        <label> Miasto <form:input type="text" name="city" path="city"/> </label>
+                    </div>
+
+                    <div class="form-group form-group--inline">
+                        <label>
+                            Kod pocztowy <form:input type="text" name="postcode" path="zipCode"/>
                         </label>
                     </div>
 
-                </c:forEach>
-
-
-                <div class="form-group form-group--buttons">
-                    <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
-                </div>
-            </div>
-
-            <!-- STEP 5 -->
-            <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
-
-                <div class="form-section form-section--columns">
-                    <div class="form-section--column">
-                        <h4>Adres odbioru</h4>
-                        <div class="form-group form-group--inline">
-                            <label> Ulica <form:input type="text" name="address" path="street"/> </label>
-                        </div>
-
-                        <div class="form-group form-group--inline">
-                            <label> Miasto <form:input type="text" name="city" path="city"/> </label>
-                        </div>
-
-                        <div class="form-group form-group--inline">
-                            <label>
-                                Kod pocztowy <form:input type="text" name="postcode" path="zipCode"/>
-                            </label>
-                        </div>
-
-<%--                        <div class="form-group form-group--inline">--%>
-<%--                            <label>--%>
-<%--                                Numer telefonu <form:input type="phone" name="phone" path="phoneNumber"/>--%>
-<%--                            </label>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                        <%--                        <div class="form-group form-group--inline">--%>
+                        <%--                            <label>--%>
+                        <%--                                Numer telefonu <form:input type="phone" name="phone" path="phoneNumber"/>--%>
+                        <%--                            </label>--%>
+                        <%--                        </div>--%>
+                        <%--                    </div>--%>
 
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
@@ -164,7 +164,7 @@
                     <button type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
-
+        </div>
             <!-- STEP 6 -->
             <div data-step="5">
                 <h3>Podsumowanie Twojej darowizny</h3>
@@ -175,15 +175,15 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
+                                <span class="summary--text">
+                                    <span id="quantity-summary">0</span> worki <span id="categories--summary"></span> w dobrym stanie dla dzieci</span
                                 >
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
+                                <span class="summary--text "
+                                >Dla fundacji <span class="foundation-summary">"Mam marzenie"</span> </span
                                 >
                             </li>
                         </ul>
@@ -216,12 +216,13 @@
                     <button type="submit" class="btn">Potwierdzam</button>
                 </div>
             </div>
-        </form:form>
-    </div>
+            </form:form>
+        </div>
 </section>
 
 <jsp:include page="footer.jsp"/>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>
