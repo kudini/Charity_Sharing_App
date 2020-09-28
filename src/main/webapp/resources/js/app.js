@@ -123,6 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
          */
         events() {
             // Next step
+
+
+
             this.$next.forEach(btn => {
                 btn.addEventListener("click", e => {
                     e.preventDefault();
@@ -163,16 +166,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
             this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
             this.$step.parentElement.hidden = this.currentStep >= 5;
-
-            // TODO: get data from inputs and show them in summary
-            document.querySelector('#quantity-summary').innerText = document.querySelector('#quantity').value;
-            let radios = jQuery("input[name='institution']")
-            for (let i = 0, length = radios.length; i < length; i++) {
-                console.log(i)
-                if (radios[i].checked) {
-                    document.querySelector('#foundation-summary').innerText =  radios[i].value;
-                }
+            //Summary
+            let radios = document.querySelector("input[name='institution']:checked").parentElement.querySelector('#institution-name');
+            if(this.currentStep==2){
+                let categories = document.querySelectorAll("input[name='categories']:checked");
+                let c=[];
+                categories.forEach(el=>c.push(el.parentElement.querySelector(".description").innerText));
+                c = c.join(", ");
+                document.querySelector("#categories--summary").innerText =c;
             }
+            document.querySelector('#quantity-summary').innerText = document.querySelector('#quantity').value;
+            document.querySelector('#address').innerText = document.querySelector("input[name='street']").value;
+            document.querySelector('#city').innerText = document.querySelector("input[name='city']").value;
+            document.querySelector('#zip-code').innerText = document.querySelector("input[name='zipCode']").value;
+            document.querySelector('#phone-number').innerText = document.querySelector("input[name='phoneNumber']").value;
+            document.querySelector('#date').innerText = document.querySelector("input[name='pickUpDate']").value;
+            document.querySelector('#time').innerText = document.querySelector("input[name='pickUpTime']").value;
+            document.querySelector('#comments').innerText = document.querySelector("textarea[name='pickUpComment']").value;
+            document.querySelector("#foundation-summary").innerText = radios.innerText;
+
         }
 
     }
@@ -182,21 +194,4 @@ document.addEventListener("DOMContentLoaded", function () {
         new FormSteps(form);
     }
 
-    function validateForm() {
-        var x = document.forms["myForm"]["fname"].value;
-        if (x == "") {
-            alert("Name must be filled out");
-            return false;
-        }
-    }
-
-    function checkBoxValidation(form) {
-
-        if (!form.category.checked) {
-            alert("Please indicate that you accept the Terms and Conditions");
-            form.category.focus();
-            return false;
-        }
-        return true;
-    }
 });
