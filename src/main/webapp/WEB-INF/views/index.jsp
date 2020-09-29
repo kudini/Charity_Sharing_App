@@ -118,6 +118,5 @@
 <jsp:include page="footer.jsp"/>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

@@ -30,9 +30,7 @@ public class DonationController {
         DonationFormModel donationFormModel = new DonationFormModel(institutionService.findAllInstitution(),categoryService.findAllCategories());
         model.addAttribute("donationmodel",donationFormModel);
         model.addAttribute("donation",new Donation());
-        JSONPObject jsonpObject = new JSONPObject("institution",donationFormModel.getInstitutions());
-
-
+        //todo stworz dto zeby nie wyrzucac nasza encje poza to donation dto institutions dto etc
         return "form";
     }
     @PostMapping("/donate")
