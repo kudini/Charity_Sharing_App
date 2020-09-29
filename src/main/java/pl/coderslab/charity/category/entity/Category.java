@@ -3,6 +3,7 @@ package pl.coderslab.charity.category.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import pl.coderslab.charity.category.dto.CategoryDto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,10 @@ public class Category {
     private String name;
 
     public Category() {
+    }
 
+    public Category(CategoryDto categoryDto) {
+        this.id = categoryDto.getId();
+        this.name = categoryDto.getName();
     }
 }

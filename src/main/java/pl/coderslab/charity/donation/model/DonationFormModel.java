@@ -3,6 +3,7 @@ package pl.coderslab.charity.donation.model;
 import lombok.Getter;
 import lombok.Setter;
 import pl.coderslab.charity.category.entity.Category;
+import pl.coderslab.charity.donation.dto.DonationDto;
 import pl.coderslab.charity.donation.entity.Donation;
 import pl.coderslab.charity.institution.entity.Institution;
 
@@ -18,4 +19,5 @@ public class DonationFormModel {
         this.institutions = institutions;
         this.categoryList = categoryList;
     }
+
 }

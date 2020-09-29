@@ -1,8 +1,8 @@
 package pl.coderslab.charity.institution.entity;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import pl.coderslab.charity.institution.dto.InstitutionDto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +20,11 @@ public class Institution {
     private String description;
 
     public Institution() {
+    }
 
+    public Institution(InstitutionDto institutionDto) {
+        this.id = institutionDto.getId();
+        this.name = institutionDto.getName();
+        this.description = institutionDto.getDescription();
     }
 }
