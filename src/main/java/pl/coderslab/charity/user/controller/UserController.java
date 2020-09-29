@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.coderslab.charity.user.dto.LoginDto;
 import pl.coderslab.charity.user.dto.RegistrationDto;
 import pl.coderslab.charity.user.entity.User;
 import pl.coderslab.charity.user.model.CurrentUser;
