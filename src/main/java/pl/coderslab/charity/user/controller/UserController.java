@@ -45,12 +45,11 @@ public class UserController {
 
     public String admin(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
-        return "Hello " + entityUser.getUsername();
+        return "Hello " + entityUser.getUsername() +entityUser.getRoles();
     }
 
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("login", new LoginDto());
         return "login";
     }
 

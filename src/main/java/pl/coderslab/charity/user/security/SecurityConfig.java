@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import pl.coderslab.charity.user.authentication.MySimpleUrlAuthenticationSuccessHandler;
 import pl.coderslab.charity.user.service.SpringDataUserDetailsService;
 
 @Configuration
@@ -15,7 +17,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
     @Bean
     public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
@@ -30,6 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and().formLogin()
                 .loginPage("/login")
-                .and().exceptionHandling().accessDeniedPage("/403");
+                .loginProcessingUrl("/login")
+                .successHandler(myAuthenticationSuccessHandler())
+                .and().logout()
+                .permitAll();
     }
 }

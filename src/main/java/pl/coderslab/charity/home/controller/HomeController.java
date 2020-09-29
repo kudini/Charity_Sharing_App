@@ -42,9 +42,4 @@ public class HomeController {
         model.addAttribute("info",new HomePageInfoModel(sumAllBags(),sumAllGifts(),institutionsInDatabase()));
         return "index";
     }
-    @RequestMapping("/403")
-    public String accesDenied(){
-        return "index";
-    }
-
 }
