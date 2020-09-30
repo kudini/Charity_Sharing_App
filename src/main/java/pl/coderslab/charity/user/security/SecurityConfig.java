@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.coderslab.charity.user.authentication.MySimpleUrlAuthenticationSuccessHandler;
 import pl.coderslab.charity.user.service.SpringDataUserDetailsService;
 
@@ -31,15 +32,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/register","/login").anonymous()
+                .antMatchers("/register", "/login").anonymous()
                 .antMatchers("/",
                         "/create").permitAll()
                 .antMatchers("/donate/**",
                         "/user/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and().formLogin()
-                .loginPage("/login").loginProcessingUrl("/login").successHandler(myAuthenticationSuccessHandler()).and().anonymous()
-                .and().logout().logoutSuccessUrl("/login")
-                .permitAll();
+                .loginPage("/login").loginProcessingUrl("/login").successHandler(myAuthenticationSuccessHandler())
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login").invalidateHttpSession(true).permitAll();
     }
 }
