@@ -23,48 +23,28 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "user.id")
+    @JoinColumn(name = "user_id")
     private User donor;
-    @NotBlank
     private Integer quantity;
     @ManyToMany
-    @NotEmpty
     private List<Category> categories;
     @OneToOne
-    @NotEmpty
     private Institution institution;
     @NotBlank
     @Size(max=22,min = 9)
     private String phoneNumber;
-    @NotEmpty
     private String street;
-    @NotEmpty
     private String city;
-    @NotEmpty
     @Pattern(regexp = "\\d{2}-\\d{3}", message = "bledny kod pocztowy")
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @PastOrPresent
+    @FutureOrPresent
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
     private boolean pickedUp;
 
     public Donation() {
-    }
-
-    public Donation(Long id, @NotBlank Integer quantity, @NotEmpty List<Category> categories, @NotEmpty Institution institution, @NotBlank @Size(max = 22, min = 9) String phoneNumber, @NotEmpty String street, @NotEmpty String city, @NotEmpty @Pattern(regexp = "\\d{2}-\\d{3}", message = "bledny kod pocztowy") String zipCode, @PastOrPresent LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment) {
-        this.id = id;
-        this.quantity = quantity;
-        this.categories = categories;
-        this.institution = institution;
-        this.phoneNumber = phoneNumber;
-        this.street = street;
-        this.city = city;
-        this.zipCode = zipCode;
-        this.pickUpDate = pickUpDate;
-        this.pickUpTime = pickUpTime;
-        this.pickUpComment = pickUpComment;
     }
     public Donation(DonationDto donationDto) {
         this.id = donationDto.getId();

@@ -31,13 +31,12 @@ public class DonationController {
     public String donationForm(Model model) {
         DonationFormModel donationFormModel = new DonationFormModel(institutionService.findAllInstitution(), categoryService.findAllCategories());
         model.addAttribute("donationmodel", donationFormModel);
-        model.addAttribute("donationDto", new DonationDto());
+        model.addAttribute("donation", new Donation());
         return "form";
     }
 
     @PostMapping("/donate")
-    public String donationForm(@AuthenticationPrincipal CurrentUser currentUser, @ModelAttribute DonationDto donationDto) {
-        Donation donation = new Donation(donationDto);
+    public String donationForm(@AuthenticationPrincipal CurrentUser currentUser, @ModelAttribute Donation donation) {
         donation.setDonor(currentUser.getUser());
         donationService.saveDonation(donation);
         return "form-confirmation";
