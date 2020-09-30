@@ -45,4 +45,10 @@ public class DonationServiceImpl implements DonationService{
     public void modifyDonation(Donation donation) {
         donationRepository.save(donation);
     }
+    public Long sumAllBags(){
+        return donationRepository.countQuantity();
+    }
+    public Long sumAllGifts(){
+        return donationRepository.count();
+    }
 }

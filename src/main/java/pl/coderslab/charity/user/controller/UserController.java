@@ -1,5 +1,6 @@
 package pl.coderslab.charity.user.controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,8 @@ public class UserController {
     public String registrationPost(@ModelAttribute RegistrationDto registrationDto) {
         User user = new User();
         if (registrationDto.getPassword().equals(registrationDto.getPassword2())) {
+            user.setFirstName(registrationDto.getFirstName());
+            user.setLastName(registrationDto.getLastName());
             user.setUsername(registrationDto.getEmail());
             user.setPassword(registrationDto.getPassword());
             userService.saveUser(user);
@@ -50,6 +53,14 @@ public class UserController {
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
+    }
+    @GetMapping("/test")
+    @ResponseBody
+
+    public String currentUserName(Authentication authentication) {
+
+        return authentication.getPrincipal().toString();
+
     }
 
 }

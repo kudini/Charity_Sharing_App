@@ -10,6 +10,7 @@ import pl.coderslab.charity.donation.service.DonationServiceImpl;
 import pl.coderslab.charity.home.model.HomePageInfoModel;
 import pl.coderslab.charity.institution.entity.Institution;
 import pl.coderslab.charity.institution.service.InstitutionService;
+import pl.coderslab.charity.institution.service.InstitutionServiceImpl;
 
 import java.util.List;
 
@@ -24,22 +25,22 @@ public class HomeController {
         this.donationService = donationService;
         this.institutionService = institutionService;
     }
-
-    private long sumAllGifts(){
+    public Long sumAllBags(){
+        return donationService.countQuantity();
+    }
+    public long sumAllGifts(){
         return donationService.countDonations();
     }
     private List<Institution> institutionsInDatabase(){
 
         return institutionService.findAllInstitution();
     }
-    private Long sumAllBags(){
-        return donationService.countQuantity();
-    }
+
 
 
     @RequestMapping("/")
     public String homeAction(Model model){
-        model.addAttribute("info",new HomePageInfoModel(sumAllBags(),sumAllGifts(),institutionsInDatabase()));
+        model.addAttribute("info",new HomePageInfoModel(sumAllBags(),sumAllGifts(), institutionsInDatabase()));
         return "index";
     }
 }

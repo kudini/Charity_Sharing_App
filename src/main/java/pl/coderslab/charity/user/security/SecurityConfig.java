@@ -17,10 +17,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
-    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
         return new MySimpleUrlAuthenticationSuccessHandler();
     }
+
     @Bean
     public SpringDataUserDetailsService customUserDetailsService() {
         return new SpringDataUserDetailsService();
@@ -29,15 +31,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/create")
-                .permitAll()
-                .antMatchers("/aboutus")
-                .authenticated()
+                .antMatchers("/register","/login").anonymous()
+                .antMatchers("/",
+                        "/create").permitAll()
+                .antMatchers("/donate/**",
+                        "/user/**").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and().formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login")
-                .successHandler(myAuthenticationSuccessHandler())
-                .and().logout()
+                .loginPage("/login").loginProcessingUrl("/login").successHandler(myAuthenticationSuccessHandler()).and().anonymous()
+                .and().logout().logoutSuccessUrl("/login")
                 .permitAll();
     }
 }

@@ -10,18 +10,21 @@ import pl.coderslab.charity.user.dto.UserDto;
 import pl.coderslab.charity.user.entity.Role;
 import pl.coderslab.charity.user.entity.User;
 import pl.coderslab.charity.user.service.UserService;
+import pl.coderslab.charity.user.service.UserServiceImpl;
 
 @Controller
 public class AdminController {
-    private final Role ADMIN_ROLE = new Role("ROLE_ADMIN");
+    private final Role ADMIN_ROLE;
     private UserService userService;
 
     public AdminController(UserService userService) {
         this.userService = userService;
+        ADMIN_ROLE = userService.findRoleByName("ROLE_ADMIN");
     }
 
     @GetMapping("/admin/panel")
-    public String listAdminsPanel() {
+    public String listAdminsPanel(Model model) {
+        model.addAttribute("admins", userService.findAllByRoles(ADMIN_ROLE));
         return "admin-panel-list";
     }
 

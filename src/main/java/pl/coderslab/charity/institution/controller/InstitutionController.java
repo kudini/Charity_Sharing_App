@@ -5,19 +5,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.coderslab.charity.institution.entity.Institution;
+import pl.coderslab.charity.category.service.CategoryService;
+import pl.coderslab.charity.donation.service.DonationService;
+import pl.coderslab.charity.home.model.HomePageInfoModel;
 import pl.coderslab.charity.institution.service.InstitutionService;
+import pl.coderslab.charity.institution.service.InstitutionServiceImpl;
 
 @Controller
 public class InstitutionController {
     private final InstitutionService institutionService;
+    private final CategoryService categoryService;
+    private final DonationService donationService;
 
-    public InstitutionController(InstitutionService institutionService) {
+    public InstitutionController(InstitutionService institutionService, CategoryService categoryService, DonationService donationService) {
         this.institutionService = institutionService;
+        this.categoryService = categoryService;
+        this.donationService = donationService;
     }
     @GetMapping("/institution")
     public String instituionPanel(Model model){
-        return "institution-panel";
+        model.addAttribute("info",new HomePageInfoModel( donationService.countQuantity(), donationService.countDonations(),institutionService.findAllInstitution()));
+        return "institutions";
     }
     @GetMapping("/institution/{id}/edit")
     public String editInstitutionGet(@PathVariable Long id, Model model){

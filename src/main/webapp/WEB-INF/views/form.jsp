@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<jsp:include page="form_header.jsp"/>
+<jsp:include page="form_logged.jsp"/>
 
 <section class="form--steps">
     <div class="form--steps-instructions">
