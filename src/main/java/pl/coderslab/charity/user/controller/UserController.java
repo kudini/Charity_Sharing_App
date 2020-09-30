@@ -4,11 +4,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.user.dto.RegistrationDto;
+import pl.coderslab.charity.user.dto.UserDto;
 import pl.coderslab.charity.user.entity.User;
 import pl.coderslab.charity.user.model.CurrentUser;
 import pl.coderslab.charity.user.service.UserService;
@@ -42,18 +40,44 @@ public class UserController {
         }
     }
 
+    @PostMapping("/profile/edit")
+    public String profileEditPost(@ModelAttribute UserDto userDto) {
+        User user = userService.findById(userDto.getId());
+         user.setLastName(userDto.getLastName());
+         user.setFirstName(user.getFirstName());
+         user.setUsername(userDto.getUsername());
+        userService.saveUser(user);
+        return "redirect:/profile";
+    }
+
+
+    @GetMapping("/profile/edit")
+    public String profileEdit(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
+        User user = userService.findById(currentUser.getUser().getId());
+        UserDto userDto = new UserDto(user);
+        model.addAttribute("userDto",userDto);
+        return "edit_user";
+    }
+
+    @GetMapping("/profile")
+    public String profileGet(@AuthenticationPrincipal CurrentUser currentUser,Model model) {
+        model.addAttribute("user",userService.findById(currentUser.getUser().getId()));
+        return "profile";
+    }
+
     @GetMapping("/admin")
     @ResponseBody
 
     public String admin(@AuthenticationPrincipal CurrentUser customUser) {
         User entityUser = customUser.getUser();
-        return "Hello " + entityUser.getUsername() +entityUser.getRoles();
+        return "Hello " + entityUser.getUsername() + entityUser.getRoles();
     }
 
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
     }
+
     @GetMapping("/test")
     @ResponseBody
 

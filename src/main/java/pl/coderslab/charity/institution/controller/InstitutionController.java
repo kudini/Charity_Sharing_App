@@ -27,6 +27,11 @@ public class InstitutionController {
         model.addAttribute("info",new HomePageInfoModel( donationService.countQuantity(), donationService.countDonations(),institutionService.findAllInstitution()));
         return "institutions";
     }
+    @GetMapping("/institution/{id}")
+    public String instituionDetails(@PathVariable Long id, Model model){
+        model.addAttribute("institution",institutionService.findById(id));
+        return "institutions_details";
+    }
     @GetMapping("/institution/{id}/edit")
     public String editInstitutionGet(@PathVariable Long id, Model model){
         return "institution-add";

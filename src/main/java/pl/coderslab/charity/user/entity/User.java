@@ -2,6 +2,7 @@ package pl.coderslab.charity.user.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.coderslab.charity.user.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -34,5 +35,18 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    public User() {
+    }
+
+    public User(UserDto userDto) {
+        this.id = userDto.getId();
+        this.username = userDto.getUsername();
+        this.password = userDto.getPassword();
+        this.enabled = userDto.getEnabled();
+        this.roles = userDto.getRoles();
+        this.firstName = userDto.getFirstName();
+        this.lastName = userDto.getLastName();
     }
 }

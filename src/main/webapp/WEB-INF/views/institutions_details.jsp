@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -19,54 +21,37 @@
 
 <section class="stats">
     <div class="container container--85">
-        <div class="stats--item">
-            <em>${info.getBags()}</em>
 
-            <h3>Oddanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
-        </div>
-
-        <div class="stats--item">
-            <em>${info.getDonations()}</em>
-            <h3>Przekazanych darów</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
-        </div>
 
     </div>
 </section>
 
 <section class="help">
     <a name="help"></a>
-    <h2>Lista instytucji</h2>
+    <h2>Informacje o instytucji</h2>
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>Zweryfikowane instytucje z którymi współpracujemy.</p>
+        <p>Dodatkowe informacje</p>
 
         <ul class="help--slides-items">
 
-            <c:forEach items="${info.getInstitutions()}" var="institution" varStatus="status">
-                <c:if test="${status.count %2 == 1}">
-                    <li>
-                </c:if>
+
+            <li>
                 <div class="col">
-                    <a href="/institution/${institution.getId()}">
                     <div class="title">Fundacja: "${institution.getName()}"</div>
                     <div class="subtitle">Cel i misja: ${institution.getDescription()}</div>
-                    </a>
                 </div>
-                <c:if test="${status.last}">
-                    <c:if test="${status.index %2 == 0}">
-                        <div class="col last-hide">
-                        </div>
-                    </c:if>
-                </c:if>
-                <c:if test="${status.count %2 == 0}">
-                    </li>
-                </c:if>
-            </c:forEach>
+                <sec:authorize access="hasRole('ADMIN')">
+                <div class="col">
+                    <div class="title">
+                            <a href="/institution/${institution.getId()}/edit">Edytuj</a>
+                            <a href="/institution/${institution.getId()}/delete">Usuń</a>
+                    </div>
+                </div>
+                </sec:authorize>
+
+            </li>
         </ul>
     </div>
 

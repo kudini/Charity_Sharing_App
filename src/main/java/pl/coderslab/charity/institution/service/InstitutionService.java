@@ -7,4 +7,5 @@ import java.util.List;
 @Service
 public interface InstitutionService {
     public List <Institution> findAllInstitution();
+    public Institution findById(Long id);
 }

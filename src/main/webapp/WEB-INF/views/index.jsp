@@ -15,7 +15,7 @@
 <body>
 <a name="#start"></a>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="_misc/header.jsp"/>
 
 <section class="stats">
     <div class="container container--85">
@@ -115,7 +115,7 @@
 </section>
 
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="_misc/footer.jsp"/>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>

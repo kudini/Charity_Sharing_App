@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<sec:authentication var="user" property="principal.user" />
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -16,23 +18,12 @@
 <header>
     <jsp:include page="_misc/panel_header.jsp"/>
 </header>
-
 <section class="login-page">
-    <h2>Zaloguj się</h2>
-    <form method="post">
-        <div class="form-group">
-            <input type="email" name="username" placeholder="Email"/>
-        </div>
-        <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło"/>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
-        </div>
-        <div class="form-group form-group--buttons">
-            <a href="${pageContext.request.contextPath}/register" class="btn btn--without-border">Załóż konto</a>
-            <button class="btn" type="submit">Zaloguj się</button>
-        </div>
-    </form>
+    <h2>Profil użytkownika:</h2>
+    <h1>Imię: ${user.getFirstName()}</h1>
+    <h1>Nazwisko: ${user.getLastName()}</h1>
+    <h1>Email: ${user.getUsername()}</h1>
+<h1><a class="form-group--buttons altColor" href="/profile/edit">Edytuj</a></h1>
 </section>
 
 <jsp:include page="_misc/footer.jsp"/>

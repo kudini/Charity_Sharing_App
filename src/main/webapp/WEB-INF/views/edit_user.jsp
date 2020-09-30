@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<sec:authentication var="user" property="principal.user" />
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -16,23 +18,27 @@
 <header>
     <jsp:include page="_misc/panel_header.jsp"/>
 </header>
-
 <section class="login-page">
-    <h2>Zaloguj się</h2>
-    <form method="post">
+    <h2>Edytuj Profil</h2>
+    <form:form method="post" modelAttribute="userDto">
         <div class="form-group">
-            <input type="email" name="username" placeholder="Email"/>
+            <form:input type="number" path="id" placeholder="Id:" disabled="true" />
         </div>
         <div class="form-group">
-            <input type="password" name="password" placeholder="Hasło"/>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+            <form:input type="email" path="username" placeholder="Email:" value="${user.getUsername()}"/>
         </div>
+        <div class="form-group">
+            <form:input type="text" path="firstName" placeholder="Imię:" value="${user.getFirstName()}"/>
+        </div>
+        <div class="form-group">
+            <form:input type="text" path="lastName" placeholder="Nazwisko:" value="${user.getLastName()}"/>
+        </div>
+
+
         <div class="form-group form-group--buttons">
-            <a href="${pageContext.request.contextPath}/register" class="btn btn--without-border">Załóż konto</a>
-            <button class="btn" type="submit">Zaloguj się</button>
+            <form:button class="btn" type="submit">Zapisz Zmiany</form:button>
         </div>
-    </form>
+    </form:form>
 </section>
 
 <jsp:include page="_misc/footer.jsp"/>

@@ -4,7 +4,7 @@
 
 <header class="header--form-page">
     <nav class="container container--70">
-        <jsp:include page="logged.jsp"/>
+        <jsp:include page="_misc/logged.jsp"/>
 
 
         <ul>

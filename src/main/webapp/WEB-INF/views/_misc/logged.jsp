@@ -8,8 +8,12 @@
     <li class="logged-user">
         Witaj ${user.getUser().getFirstName()}
         <ul class="dropdown">
-            <li><a href="${pageContext.request.contextPath}/profile/${user.getUser().getId()}">Profil</a></li>
+            <li><a href="${pageContext.request.contextPath}/profile">Profil</a></li>
             <li><a href="${pageContext.request.contextPath}/donations/${user.getUser().getId()}">Moje zbiórki</a></li>
+            <sec:authorize access="hasRole('ADMIN')">
+                <li><a href="${pageContext.request.contextPath}/admin/panel">Panel Administracyjny</a></li>
+            </sec:authorize>
+            <li><a href="${pageContext.request.contextPath}/institution">Instytucje</a></li>
             <li><a href="${pageContext.request.contextPath}/donate">Oddaj Rzeczy</a></li>
             <li><a href="${pageContext.request.contextPath}/logout">Wyloguj</a></li>
         </ul>

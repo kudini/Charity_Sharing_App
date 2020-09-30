@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/",
                         "/create").permitAll()
                 .antMatchers("/donate/**",
-                        "/user/**").authenticated()
+                        "/user/**", "/profile/**","/institution/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and().formLogin()
                 .loginPage("/login").loginProcessingUrl("/login").successHandler(myAuthenticationSuccessHandler())

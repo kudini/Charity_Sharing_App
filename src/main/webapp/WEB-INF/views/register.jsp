@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-
-<jsp:include page="header.jsp"/>
-
+<header>
+    <jsp:include page="_misc/panel_header.jsp"/>
+</header>
 <section class="login-page">
     <h2>Załóż konto</h2>
     <form:form method="post" modelAttribute="registrationDto">
@@ -42,7 +42,7 @@
     </form:form>
 </section>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="_misc/footer.jsp"/>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>

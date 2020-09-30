@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-
-<jsp:include page="admin_header_logged.jsp"/>
+<header class="header">
+<jsp:include page="_misc/panel_header.jsp"/>
+</header>
 
 
 <section class="help">
@@ -55,7 +56,7 @@
 </section>
 
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="_misc/footer.jsp"/>
 
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
