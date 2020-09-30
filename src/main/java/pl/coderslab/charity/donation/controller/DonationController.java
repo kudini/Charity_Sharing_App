@@ -1,5 +1,6 @@
 package pl.coderslab.charity.donation.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import pl.coderslab.charity.donation.entity.Donation;
 import pl.coderslab.charity.donation.model.DonationFormModel;
 import pl.coderslab.charity.donation.service.DonationService;
 import pl.coderslab.charity.institution.service.InstitutionService;
+import pl.coderslab.charity.user.model.CurrentUser;
 
 @Controller
 public class DonationController {
@@ -29,14 +31,15 @@ public class DonationController {
     public String donationForm(Model model) {
         DonationFormModel donationFormModel = new DonationFormModel(institutionService.findAllInstitution(), categoryService.findAllCategories());
         model.addAttribute("donationmodel", donationFormModel);
-        model.addAttribute("donation", new DonationDto());
-        //todo stworz dto zeby nie wyrzucac nasza encje poza to donation dto institutions dto etc
+        model.addAttribute("donationDto", new DonationDto());
         return "form";
     }
 
     @PostMapping("/donate")
-    public String donationForm(@ModelAttribute DonationDto donationDto) {
-        donationService.saveDonation(DonationConversion.convertDonationDtoToDonation(donationDto));
+    public String donationForm(@AuthenticationPrincipal CurrentUser currentUser, @ModelAttribute DonationDto donationDto) {
+        Donation donation = new Donation(donationDto);
+        donation.setDonor(currentUser.getUser());
+        donationService.saveDonation(donation);
         return "form-confirmation";
 
     }

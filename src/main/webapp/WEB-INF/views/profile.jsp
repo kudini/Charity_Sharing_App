@@ -27,7 +27,7 @@
     <h1>Imię: ${user.getFirstName()}</h1>
     <h1>Nazwisko: ${user.getLastName()}</h1>
     <h1>Email: ${user.getUsername()}</h1>
-<h1><a class="form-group--buttons altColor" href="/profile/edit">Edytuj</a></h1>
+<h1><a class="btn" href="/profile/edit">Edytuj</a></h1>
 </section>
 
 <jsp:include page="_misc/footer.jsp"/>

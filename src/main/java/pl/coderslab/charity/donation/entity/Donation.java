@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.entity.Category;
 import pl.coderslab.charity.donation.dto.DonationDto;
 import pl.coderslab.charity.institution.entity.Institution;
+import pl.coderslab.charity.user.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -21,6 +22,9 @@ public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user.id")
+    private User donor;
     @NotBlank
     private Integer quantity;
     @ManyToMany
@@ -44,6 +48,7 @@ public class Donation {
     private LocalDate pickUpDate;
     private LocalTime pickUpTime;
     private String pickUpComment;
+    private boolean pickedUp;
 
     public Donation() {
     }

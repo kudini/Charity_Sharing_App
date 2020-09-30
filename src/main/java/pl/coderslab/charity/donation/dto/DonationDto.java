@@ -2,6 +2,7 @@ package pl.coderslab.charity.donation.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.entity.Category;
 import pl.coderslab.charity.donation.entity.Donation;
 import pl.coderslab.charity.institution.entity.Institution;
