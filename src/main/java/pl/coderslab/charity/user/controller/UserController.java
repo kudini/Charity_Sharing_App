@@ -41,12 +41,13 @@ public class UserController {
     }
 
     @PostMapping("/profile/edit")
-    public String profileEditPost(@ModelAttribute UserDto userDto) {
-        User user = userService.findById(userDto.getId());
+    public String profileEditPost(@AuthenticationPrincipal CurrentUser currentUser,@ModelAttribute UserDto userDto) {
+        User user = userService.findById(currentUser.getUser().getId());
          user.setLastName(userDto.getLastName());
-         user.setFirstName(user.getFirstName());
+         user.setFirstName(userDto.getFirstName());
          user.setUsername(userDto.getUsername());
         userService.saveUser(user);
+        //todo change password
         return "redirect:/profile";
     }
 

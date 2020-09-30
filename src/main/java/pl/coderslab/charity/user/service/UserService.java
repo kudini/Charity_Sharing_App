@@ -8,6 +8,8 @@ import java.util.List;
 public interface UserService {
     User findByUserName(String name);
     void saveUser(User user);
+    void modifyUser(User user);
+    void saveUserWithNewPassword(User user);
 
     User findById(Long id);
 

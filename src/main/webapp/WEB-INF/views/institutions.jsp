@@ -44,7 +44,11 @@
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
         <p>Zweryfikowane instytucje z którymi współpracujemy.</p>
-
+        <p>
+            <sec:authorize access="hasRole('ADMIN')">
+                <a class="btn" href="${pageContext.request.contextPath}/institution/add">Dodaj Fundacje</a>
+            </sec:authorize>
+        </p>
         <ul class="help--slides-items">
 
             <c:forEach items="${info.getInstitutions()}" var="institution" varStatus="status">
@@ -53,8 +57,8 @@
                 </c:if>
                 <div class="col">
                     <a href="/institution/${institution.getId()}">
-                    <div class="title">Fundacja: "${institution.getName()}"</div>
-                    <div class="subtitle">Cel i misja: ${institution.getDescription()}</div>
+                        <div class="title">Fundacja: "${institution.getName()}"</div>
+                        <div class="subtitle">Cel i misja: ${institution.getDescription()}</div>
                     </a>
                 </div>
                 <c:if test="${status.last}">

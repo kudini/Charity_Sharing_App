@@ -18,6 +18,10 @@
 <header>
     <jsp:include page="_misc/panel_header.jsp"/>
 </header>
+<section class="stats">
+    <div class="container container--85">
+    </div>
+</section>
 <section class="login-page">
     <h2>Profil użytkownika:</h2>
     <h1>Imię: ${user.getFirstName()}</h1>

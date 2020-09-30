@@ -19,7 +19,12 @@
 <jsp:include page="_misc/panel_header.jsp"/>
 </header>
 
+<section class="stats">
+    <div class="container container--85">
 
+
+    </div>
+</section>
 <section class="help">
     <ul class="help--slides-items">
         <li>
@@ -44,8 +49,8 @@
                 </div>
                 <div class="col">
                     <div class="title">
-                        <a href="/admin/${admin.getId()}/delete">Usuń</a>
-                        <a href="/admin/${admin.getId()}/edit">Edytuj</a>
+                        <a class="btn" href="/admin/${admin.getId()}/delete">Usuń</a>
+                        <a class="btn" href="/admin/${admin.getId()}/edit">Edycja</a>
                     </div>
                 </div>
             </li>

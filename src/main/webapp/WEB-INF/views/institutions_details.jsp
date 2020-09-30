@@ -44,11 +44,9 @@
                 </div>
                 <sec:authorize access="hasRole('ADMIN')">
                 <div class="col">
-                    <div class="title">
-                            <a href="/institution/${institution.getId()}/edit">Edytuj</a>
-                            <a href="/institution/${institution.getId()}/delete">Usuń</a>
-                    </div>
-                </div>
+                            <a class="btn" href="/institution/${institution.getId()}/edit">Edytuj</a>
+                            <a class="btn" href="/institution/${institution.getId()}/delete">Usuń</a>
+                 </div>
                 </sec:authorize>
 
             </li>
