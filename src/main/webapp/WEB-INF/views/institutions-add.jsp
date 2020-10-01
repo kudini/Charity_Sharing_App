@@ -3,8 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<sec:authentication var="user" property="principal.user" />
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -18,25 +16,22 @@
 <header>
     <jsp:include page="_misc/panel_header.jsp"/>
 </header>
+
 <section class="login-page">
-    <h2>Edytuj Profil</h2>
-    <form:form method="post" modelAttribute="userDto">
+    <h2>Nazwij instytucję</h2>
+    <form:form method="post" modelAttribute="institutionDto">
         <div class="form-group form-group--checkbox">
-            <form:input type="number" path="id" placeholder="Id:"  />
+            <form:input type="number" path="id" placeholder="Id"/>
         </div>
         <div class="form-group">
-            <form:input type="email" path="username" placeholder="Email:" value="${user.getUsername()}"/>
+            <form:input type="text" path="name" placeholder="Nazwa"/>
         </div>
         <div class="form-group">
-            <form:input type="text" path="firstName" placeholder="Imię:" value="${user.getFirstName()}"/>
+            <form:textarea name="descript" rows="5" path="description" placeholder="Cel i misja"/>
         </div>
-        <div class="form-group">
-            <form:input type="text" path="lastName" placeholder="Nazwisko:" value="${user.getLastName()}"/>
-        </div>
-
-
         <div class="form-group form-group--buttons">
-            <form:button class="btn" type="submit">Zapisz Zmiany</form:button>
+            <a href="/institution" class="btn btn--without-border">Wróć</a>
+            <form:button class="btn" type="submit">Dodaj</form:button>
         </div>
     </form:form>
 </section>

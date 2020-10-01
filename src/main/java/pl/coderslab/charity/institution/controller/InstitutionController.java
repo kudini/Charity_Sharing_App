@@ -40,13 +40,13 @@ public class InstitutionController {
     @GetMapping("/institution/{id}/edit")
     public String editInstitutionGet(@PathVariable Long id, Model model) {
         model.addAttribute("institutionDto",new InstitutionDto(institutionService.findById(id)));
-        return "institution-add";
+        return "institutions-add";
     }
 
     @PostMapping("/institution/{id}/edit")
     public String editInstitutionPost(@PathVariable Long id, @ModelAttribute InstitutionDto institutionDto) {
         institutionService.save(new Institution(institutionDto));
-        return "institution-add";
+        return "redirect:/institution";
     }
 
     @GetMapping("/institution/{id}/delete")
@@ -58,13 +58,13 @@ public class InstitutionController {
     @GetMapping("/institution/add")
     public String addInstitutionGet(Model model) {
         model.addAttribute("institutionDto",new InstitutionDto());
-        return "institution-add";
+        return "institutions-add";
     }
 
     @PostMapping("/institution/add")
     public String addInstitutionPost(@ModelAttribute InstitutionDto institutionDto) {
         institutionService.save(new Institution(institutionDto));
-        return "institution-add";
+        return "redirect:/institution";
     }
 
 }

@@ -49,6 +49,7 @@ public class Donation {
     public Donation(DonationDto donationDto) {
         this.id = donationDto.getId();
         this.quantity = donationDto.getQuantity();
+        this.donor = donationDto.getDonor();
         this.categories = donationDto.getCategories();
         this.institution = donationDto.getInstitution();
         this.phoneNumber = donationDto.getPhoneNumber();

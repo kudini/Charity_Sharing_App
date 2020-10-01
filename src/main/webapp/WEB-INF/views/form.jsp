@@ -124,7 +124,9 @@
                     </div>
 
                     <div class="form-group form-group--inline">
-                        <label> Miasto <form:input type="text" name="city" path="city"/> </label>
+                        <label>
+                            Miasto <form:input type="text" path="city"/>
+                        </label>
                     </div>
 
                     <div class="form-group form-group--inline">
@@ -192,9 +194,9 @@
                             <h4>Adres odbioru:</h4>
                             <ul>
                                 <li><span id="address">Prosta 51</span></li>
-                                <li><span id="city">Warszawa</span></li>
-                                <li><span id="zip-code">Warszawa</span></li>
-                                <li><span id="phone-number">Warszawa</span></li>
+                                <li><span id="town">Warszawa</span></li>
+                                <li><span id="zip-code">32-000</span></li>
+                                <li><span id="phone-number">+48785223113</span></li>
                             </ul>
                         </div>
 
@@ -202,7 +204,7 @@
                             <h4>Termin odbioru:</h4>
                             <ul>
                                 <li><span id="date">13/12/2018</span> </li>
-                                <li><span id="time"></span></li>
+                                <li><span id="time">13 00</span></li>
                                 <li><span id="comments">Brak uwag</span></li>
                             </ul>
                         </div>

@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             document.querySelector('#quantity-summary').innerText = document.querySelector('#quantity').value;
             document.querySelector('#address').innerText = document.querySelector("input[name='street']").value;
-            document.querySelector('#city').innerText = document.querySelector("input[name='city']").value;
+            document.querySelector('#town').innerText = document.querySelector("input[name='city']").value;
             document.querySelector('#zip-code').innerText = document.querySelector("input[name='zipCode']").value;
             document.querySelector('#phone-number').innerText = document.querySelector("input[name='phoneNumber']").value;
             document.querySelector('#date').innerText = document.querySelector("input[name='pickUpDate']").value;

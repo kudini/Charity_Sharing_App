@@ -4,64 +4,31 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
-  </head>
-  <body>
-    <header class="header--form-page">
+</head>
+<body>
+<header class="header--form-page">
 
-      <jsp:include page="_misc/panel_header.jsp"/>
+    <jsp:include page="_misc/panel_header.jsp"/>
 
 
-      <div class="slogan container container--90">
-          <h2>
+    <div class="slogan container container--90">
+        <h2>
             Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
             informacje o odbiorze.
-          </h2>
-      </div>
-    </header>
+        </h2>
+    </div>
+</header>
 
-    <footer>
-      <div class="contact">
-        <h2>Skontaktuj się z nami</h2>
-        <h3>Formularz kontaktowy</h3>
-        <form class="form--contact">
-          <div class="form-group form-group--50">
-            <input type="text" name="name" placeholder="Imię" />
-          </div>
-          <div class="form-group form-group--50">
-            <input type="text" name="surname" placeholder="Nazwisko" />
-          </div>
+<jsp:include page="_misc/footer.jsp"/>
 
-          <div class="form-group">
-            <textarea
-              name="message"
-              placeholder="Wiadomość"
-              rows="1"
-            ></textarea>
-          </div>
 
-          <button class="btn" type="submit">Wyślij</button>
-        </form>
-      </div>
-      <div class="bottom-line">
-        <span class="bottom-line--copy">Copyright &copy; 2018</span>
-        <div class="bottom-line--icons">
-          <a href="#" class="btn btn--small"
-            ><img src="images/icon-facebook.svg"
-          /></a>
-          <a href="#" class="btn btn--small"
-            ><img src="images/icon-instagram.svg"
-          /></a>
-        </div>
-      </div>
-    </footer>
-
-    <script src="<c:url value="/resources/js/app.js"/>"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-  </body>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</body>
 </html>
